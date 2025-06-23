@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-// Move Modal component outside to prevent re-rendering issues
 const Modal = ({ isOpen, onClose, title, children }) => {
     if (!isOpen) return null;
 
@@ -48,7 +47,6 @@ const Income = () => {
 
     const API_BASE_URL = (import.meta.env.VITE_API_URL || '/api') + '/income';
 
-    // Get auth token from localStorage
     const getAuthHeaders = () => {
         const token = localStorage.getItem('token');
         return {
@@ -68,7 +66,7 @@ const Income = () => {
             }
         } catch (error) {
             console.error('Error fetching income:', error);
-            // For demo purposes, fallback to mock data
+
             setIncome([
                 {
                     _id: 1,

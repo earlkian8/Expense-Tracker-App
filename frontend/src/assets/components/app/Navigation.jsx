@@ -9,7 +9,7 @@ const Navigation = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Get user data from localStorage
+
         const userData = localStorage.getItem('user');
         if (userData) {
             const parsedUser = JSON.parse(userData);
@@ -17,9 +17,8 @@ const Navigation = () => {
             setUserId(parsedUser._id);
         }
 
-        // Extract userId from current URL if available
         const pathParts = location.pathname.split('/');
-        const urlUserId = pathParts[2]; // /dashboard/:userId or /expenses/:userId
+        const urlUserId = pathParts[2];
         if (urlUserId && urlUserId !== 'dashboard' && urlUserId !== 'expenses' && urlUserId !== 'income') {
             setUserId(urlUserId);
         }

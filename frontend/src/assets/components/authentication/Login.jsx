@@ -21,13 +21,10 @@ const Login = () => {
         try {
             const response = await axios.post(`${API_BASE_URL}/accounts/login`, { username, password });
             if (response.data.success) {
-                // Store token and user data
                 localStorage.setItem("token", response.data.token);
                 localStorage.setItem("user", JSON.stringify(response.data.account));
                 
                 setSuccess("Login successful! Redirecting to dashboard...");
-                
-                // Navigate to dashboard with user ID
                 const userId = response.data.account._id;
                 setTimeout(() => navigate(`/dashboard/${userId}`), 1500);
             }

@@ -26,8 +26,7 @@ const Register = () => {
                 setName("");
                 setUsername("");
                 setPassword("");
-                
-                // Redirect to login after 2 seconds
+
                 setTimeout(() => {
                     navigate('/login');
                 }, 2000);

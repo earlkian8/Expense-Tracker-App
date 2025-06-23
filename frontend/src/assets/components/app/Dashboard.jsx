@@ -9,8 +9,7 @@ const Dashboard = () => {
     const [currentTime, setCurrentTime] = useState(new Date());
     const [selectedPeriod, setSelectedPeriod] = useState('month');
     const [loading, setLoading] = useState(true);
-    
-    // Data states
+
     const [expenses, setExpenses] = useState([]);
     const [income, setIncome] = useState([]);
     const [stats, setStats] = useState({
@@ -23,7 +22,6 @@ const Dashboard = () => {
     });
     const [recentTransactions, setRecentTransactions] = useState([]);
 
-    // Get auth token from localStorage
     const getAuthHeaders = () => {
         const token = localStorage.getItem('token');
         return {
@@ -32,12 +30,10 @@ const Dashboard = () => {
         };
     };
 
-    // Fetch all data
     const fetchDashboardData = async () => {
         try {
             setLoading(true);
-            
-            // Fetch expenses and income in parallel
+
             const [expensesResponse, incomeResponse] = await Promise.all([
                 axios.get(`${API_BASE_URL}/expenses`, { headers: getAuthHeaders() }),
                 axios.get(`${API_BASE_URL}/income`, { headers: getAuthHeaders() })
@@ -49,12 +45,10 @@ const Dashboard = () => {
             setExpenses(expensesData);
             setIncome(incomeData);
 
-            // Calculate statistics
             const totalExpenses = expensesData.reduce((sum, expense) => sum + expense.amount, 0);
             const totalIncome = incomeData.reduce((sum, inc) => sum + inc.amount, 0);
             const netBalance = totalIncome - totalExpenses;
 
-            // Calculate changes (simplified - you can implement more sophisticated logic)
             const expenseChange = expensesData.length > 0 ? -5.2 : 0;
             const incomeChange = incomeData.length > 0 ? 12.3 : 0;
             const balanceChange = netBalance > 0 ? 8.7 : -2.1;
@@ -68,7 +62,7 @@ const Dashboard = () => {
                 balanceChange
             });
 
-            // Combine and sort recent transactions
+
             const allTransactions = [
                 ...expensesData.map(expense => ({
                     ...expense,
@@ -88,8 +82,7 @@ const Dashboard = () => {
 
         } catch (error) {
             console.error('Error fetching dashboard data:', error);
-            
-            // Fallback to mock data
+
             const mockExpenses = [
                 { _id: 1, amount: 850, category: 'food', description: 'Grocery Shopping', createdAt: new Date('2024-06-19') },
                 { _id: 2, amount: 180, category: 'transport', description: 'Uber Ride', createdAt: new Date('2024-06-18') },
