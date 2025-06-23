@@ -46,9 +46,10 @@ app.use("/api/accounts", accountRoutes);
 // Connect to database
 connectDB();
 
+const PORT = process.env.PORT || 5000;
 // For local development
 if (process.env.NODE_ENV !== 'production') {
-    app.listen(5000, () => {
+    app.listen(PORT, () => {
         console.log("Server starts at localhost:5000");
     });
 }
