@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
+
 const Dashboard = () => {
     const { userId } = useParams();
     const [currentTime, setCurrentTime] = useState(new Date());
@@ -37,8 +39,8 @@ const Dashboard = () => {
             
             // Fetch expenses and income in parallel
             const [expensesResponse, incomeResponse] = await Promise.all([
-                axios.get('/api/expenses', { headers: getAuthHeaders() }),
-                axios.get('/api/income', { headers: getAuthHeaders() })
+                axios.get(`${API_BASE_URL}/expenses`, { headers: getAuthHeaders() }),
+                axios.get(`${API_BASE_URL}/income`, { headers: getAuthHeaders() })
             ]);
 
             const expensesData = expensesResponse.data.success ? expensesResponse.data.expenses : [];

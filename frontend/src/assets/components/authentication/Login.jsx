@@ -10,6 +10,8 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
+    const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
@@ -17,7 +19,7 @@ const Login = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post("/api/accounts/login", { username, password });
+            const response = await axios.post(`${API_BASE_URL}/accounts/login`, { username, password });
             if (response.data.success) {
                 // Store token and user data
                 localStorage.setItem("token", response.data.token);

@@ -46,7 +46,7 @@ const Expense = () => {
         description: ''
     });
 
-    const API_BASE_URL = '/api/expenses';
+    const API_BASE_URL = (import.meta.env.VITE_API_URL || '/api') + '/expenses';
 
     // Get auth token from localStorage
     const getAuthHeaders = () => {

@@ -46,7 +46,7 @@ const Income = () => {
         description: ''
     });
 
-    const API_BASE_URL = '/api/income';
+    const API_BASE_URL = (import.meta.env.VITE_API_URL || '/api') + '/income';
 
     // Get auth token from localStorage
     const getAuthHeaders = () => {

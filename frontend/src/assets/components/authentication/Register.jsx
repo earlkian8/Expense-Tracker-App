@@ -11,6 +11,8 @@ const Register = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
+    const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
@@ -18,7 +20,7 @@ const Register = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post("/api/accounts/register", {name, username, password});
+            const response = await axios.post(`${API_BASE_URL}/accounts/register`, {name, username, password});
             if(response.data.success){
                 setSuccess("Account created successfully! Redirecting to login...");
                 setName("");
