@@ -14,8 +14,7 @@ const app = express();
 const allowedOrigins = [
     'http://localhost:5173',
     'http://localhost:3000',
-    'https://your-frontend-domain.vercel.app', // Replace with your actual frontend URL
-    'https://expense-tracker-app-frontend.vercel.app' // Example frontend URL
+    'https://expense-tracker-app-79bl-earlkian.vercel.app/'
 ];
 
 app.use(cors({
