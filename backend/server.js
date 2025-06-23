@@ -14,7 +14,7 @@ const app = express();
 const allowedOrigins = [
     'http://localhost:5173',
     'http://localhost:3000',
-    'https://expense-tracker-app-79bl-earlkian.vercel.app/'
+    'https://expense-tracker-app-d1op-earlkian.vercel.app/'
 ];
 
 app.use(cors({
