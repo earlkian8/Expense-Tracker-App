@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://expense-tracker-app-cicm-earlkian.vercel.app/"
+        target: "http://localhost:5000"
       }
     }
   },
